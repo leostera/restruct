@@ -1,8 +1,9 @@
 open Lazy;
 
-type t('a) =
+type cell('a) =
   | Nil
-  | Cons('a, lazy_t(t('a)));
+  | Cons('a, t('a))
+and t('a) = lazy_t(cell('a));
 
 let rec append = (a, b) =>
   switch (force(a)) {
