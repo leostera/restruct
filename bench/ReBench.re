@@ -1,8 +1,9 @@
-type noop = unit => unit;
-
 type t; /* abstract FFI type */
 
+type noop = unit => unit;
+
 type event_name =
+  | Start
   | Cycle
   | Complete;
 
@@ -39,6 +40,7 @@ module FFI = {
 module Utils = {
   let event_to_string: event_name => string =
     fun
+    | Start => "start"
     | Cycle => "cycle"
     | Complete => "complete";
 };
