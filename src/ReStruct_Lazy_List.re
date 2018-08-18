@@ -4,10 +4,10 @@ type t('a) =
   | Nil
   | Cons('a, lazy_t(t('a)));
 
-let rec concat = (a, b) =>
+let rec append = (a, b) =>
   switch (force(a)) {
   | Nil => b
-  | Cons(a', aa') => lazy (Cons(a', concat(aa', b)))
+  | Cons(a', aa') => lazy (Cons(a', append(aa', b)))
   };
 
 let head =

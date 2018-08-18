@@ -38,9 +38,9 @@ module Build = {
   let run = size =>
     ReBench.(
       make()
-      |> add("Lazy.List Build", make_lazy_list(size))
-      |> add("Built-in Array Build", make_array(size))
-      |> add("Built-in List Build", make_strict_list(size))
+      |> add("Lazy.List", make_lazy_list(size))
+      |> add("Array.make", make_array(size))
+      |> add("List", make_strict_list(size))
       |> on(Start, _e => Js.log("Begin Build Benchmark"))
       |> on(Cycle, default_printer)
       |> on(Complete, _e => Js.log("Complete!"))
@@ -48,33 +48,41 @@ module Build = {
     );
 };
 
-module Concat = {
-  let consume_lazy_list = x => {
+module Append = {
+  let append_lazy_list = x => {
     let l = make_lazy_list(x);
     let l' = make_lazy_list(x);
     () => {
-      let _ = Lazy.List.concat(l, l');
+      let _ = Lazy.List.append(lazy l, lazy l');
       ();
     };
   };
 
-  let consume_strict_list = (x, ()) => {
-    let _ = make_strict_list(x);
-    ();
+  let append_strict_list = x => {
+    let l = make_strict_list(x);
+    let l' = make_strict_list(x);
+    () => {
+      let _ = List.append(l, l');
+      ();
+    };
   };
 
-  let consume_array = (x, ()) => {
-    let _ = make_array(x);
-    ();
+  let append_array = x => {
+    let l = make_array(x);
+    let l' = make_array(x);
+    () => {
+      let _ = Array.append(l, l');
+      ();
+    };
   };
 
   let run = size =>
     ReBench.(
       make()
-      |> add("Lazy.List Build", make_lazy_list(size))
-      |> add("Built-in Array Build", make_array(size))
-      |> add("Built-in List Build", make_strict_list(size))
-      |> on(Start, _e => Js.log("Begin Build Benchmark"))
+      |> add("Lazy.List.append", append_lazy_list(size))
+      |> add("Array.append", append_array(size))
+      |> add("List.append", append_strict_list(size))
+      |> on(Start, _e => Js.log("Begin Append Benchmark"))
       |> on(Cycle, default_printer)
       |> on(Complete, _e => Js.log("Complete!"))
       |> run(run_opts(~async=true))
