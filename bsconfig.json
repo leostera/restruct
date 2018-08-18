@@ -5,6 +5,9 @@
     "dir" : "src",
     "subdirs" : true
   }, {
+    "dir" : "test",
+    "subdirs" : true,
+  }, {
     "dir" : "bench",
     "subdirs" : true,
   }],

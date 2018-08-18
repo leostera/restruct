@@ -1,7 +1,19 @@
-Bench_Lists.Build.run(100);
-Bench_Lists.Build.run(10000);
-Bench_Lists.Build.run(1000000);
+Bench_Lists.Make.run(10);
+Bench_Lists.Make.run(1000);
+Bench_Lists.Make.run(100000);
 
-Bench_Lists.Append.run(100);
-Bench_Lists.Append.run(10000);
-Bench_Lists.Append.run(1000000);
+Bench_Lists.Append.run(10);
+Bench_Lists.Append.run(1000);
+Bench_Lists.Append.run(100000);
+
+Bench_Lists.Take.run(10);
+Bench_Lists.Take.run(1000);
+Bench_Lists.Take.run(100000);
+
+Bench_Lists.Drop.run(10);
+Bench_Lists.Drop.run(1000);
+Bench_Lists.Drop.run(100000);
+
+Bench_Lists.Reverse.run(10);
+Bench_Lists.Reverse.run(1000);
+Bench_Lists.Reverse.run(100000);
