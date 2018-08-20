@@ -6,12 +6,19 @@ type cell('a) =
 and t('a) = lazy_t(cell('a));
 
 let make = (x, el) => {
-  let rec __make =
-    fun
+  let rec __make = (n, acc) =>
+    switch (n, acc) {
     | (0, acc) => acc
-    | (n, acc) => __make((n - 1, lazy (Cons(el, acc))));
-  __make((x, lazy Nil));
+    | (n, acc) => __make(n - 1, lazy (Cons(el, acc)))
+    };
+  __make(x, lazy Nil);
 };
+
+let isEmpty = l =>
+  switch (force(l)) {
+  | Nil => true
+  | _ => false
+  };
 
 let rec of_list =
   fun
