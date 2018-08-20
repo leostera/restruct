@@ -1,3 +1,11 @@
+Bench_Queues.Tail.run(10);
+Bench_Queues.Tail.run(1000);
+Bench_Queues.Tail.run(100000);
+
+Bench_Queues.Push.run(10);
+Bench_Queues.Push.run(1000);
+Bench_Queues.Push.run(100000);
+
 Bench_Lists.Make.run(10);
 Bench_Lists.Make.run(1000);
 Bench_Lists.Make.run(100000);

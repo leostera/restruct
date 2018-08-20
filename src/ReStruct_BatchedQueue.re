@@ -35,3 +35,5 @@ module M: ReStruct_Queue.S = {
       Some(invariant(q'));
     };
 };
+
+include M;

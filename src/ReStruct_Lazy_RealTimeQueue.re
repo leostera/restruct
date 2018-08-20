@@ -1,40 +1,36 @@
 open Lazy;
-open ReStruct.Lazy;
+open ReStruct_Lazy_List;
 
 module M: ReStruct_Queue.S = {
   type t('a) = {
-    front: List.t('a),
+    front: ReStruct_Lazy_List.t('a),
     rear: list('a),
-    schedule: List.t('a),
+    schedule: ReStruct_Lazy_List.t('a),
   };
 
-  let empty = {front: lazy List.Nil, rear: [], schedule: lazy List.Nil};
+  let empty = {front: lazy Nil, rear: [], schedule: lazy Nil};
 
-  let isEmpty = q => List.isEmpty(q.front);
+  let isEmpty = q => isEmpty(q.front);
 
   let rec rotate = ({front, rear, schedule}) =>
     switch (force(front), rear) {
-    | (List.Nil, [r, ..._rs]) => lazy (List.Cons(r, schedule))
-    | (List.Cons(f, fs), [r, ...rs]) =>
+    | (Nil, [r, ..._]) => lazy (Cons(r, schedule))
+    | (Cons(f, fs), [r, ...rs]) =>
       lazy (
-        List.Cons(
+        Cons(
           f,
-          rotate({
-            front: fs,
-            rear: rs,
-            schedule: lazy (List.Cons(r, schedule)),
-          }),
+          rotate({front: fs, rear: rs, schedule: lazy (Cons(r, schedule))}),
         )
       )
-    | (_, []) => front
+    | (_, []) => schedule
     };
 
   let exec = q =>
     switch (force(q.schedule)) {
-    | List.Nil =>
-      let f' = rotate(q);
+    | Nil =>
+      let f' = rotate({front: q.front, rear: q.rear, schedule: lazy Nil});
       {front: f', rear: [], schedule: f'};
-    | _ => q
+    | Cons(_, s) => {front: q.front, rear: q.rear, schedule: s}
     };
 
   let push = ({front, rear, schedule}, e) =>
@@ -42,13 +38,15 @@ module M: ReStruct_Queue.S = {
 
   let head = ({front}) =>
     switch (force(front)) {
-    | List.Nil => None
-    | List.Cons(x, _) => Some(x)
+    | Nil => None
+    | Cons(x, _) => Some(x)
     };
 
   let tail = ({front, rear, schedule}) =>
     switch (Lazy.force(front)) {
-    | List.Nil => None
-    | List.Cons(_, xs) => Some(exec({front: xs, rear, schedule}))
+    | Nil => None
+    | Cons(_, xs) => Some(exec({front: xs, rear, schedule}))
     };
 };
+
+include M;
