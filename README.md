@@ -1,18 +1,7 @@
-# Basic Reason Template
+# :floppy_disk: re:struct
+> Purely Functional[0] and Compact[1] Data Structures for ReasonML
 
-Hello! This project allows you to quickly get started with Reason and BuckleScript. If you wanted a more sophisticated version, try the `react` template (`bsb -theme react -init .`).
+**Status**: EXPERIMENT. Not ready to be used anywhere really.
 
-# Build
-```
-npm run build
-```
-
-# Build + Watch
-
-```
-npm run start
-```
-
-
-# Editor
-If you use `vscode`, Press `Windows + Shift + B` it will build automatically
+[0] [Okasaki's "Purely Functional Data Structures"](https://www.cs.cmu.edu/~rwh/theses/okasaki.pdf)
+[1] [Navarro's "Compact Data Structures"](https://www.dcc.uchile.cl/~gnavarro/CDSbook/)
