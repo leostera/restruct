@@ -1,4 +1,3 @@
-open Bench_Utils;
 open ReStruct;
 
 let make_lazy_list = x => Lazy.List.make(x, 0);
@@ -51,8 +50,8 @@ module Make = {
       |> add("Belt.List.make", make_strict_belt_list(size))
       |> add("ReStruct.Lazy.List.make", make_lazy_list(size))
       |> add("List (inductive)", make_strict_list(size))
-      |> on(Start, default_announcer(~size, ~name="List.Make"))
-      |> on(Cycle, default_printer)
+      |> on(Start, Utils.default_announcer(~size, ~name="List.Make"))
+      |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
       |> run(run_opts(~async=false))
     );
@@ -112,8 +111,8 @@ module Append = {
       |> add("Belt.List.concat", append_strict_belt_list(size))
       |> add("ReStruct.Lazy.List.append", append_lazy_list(size))
       |> add("List.append", append_strict_list(size))
-      |> on(Start, default_announcer(~size, ~name="List.Append"))
-      |> on(Cycle, default_printer)
+      |> on(Start, Utils.default_announcer(~size, ~name="List.Append"))
+      |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
       |> run(run_opts(~async=false))
     );
@@ -150,8 +149,8 @@ module Take = {
       |> add("Belt.Array.slice", take_array(size))
       |> add("Belt.List.take", take_strict_list(size))
       |> add("ReStruct.Lazy.List.take", take_lazy_list(size))
-      |> on(Start, default_announcer(~size, ~name="List.take"))
-      |> on(Cycle, default_printer)
+      |> on(Start, Utils.default_announcer(~size, ~name="List.take"))
+      |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
       |> run(run_opts(~async=false))
     );
@@ -188,8 +187,8 @@ module Drop = {
       |> add("Belt.Array.sliceToEnd", drop_array(size))
       |> add("Belt.List.drop", drop_strict_list(size))
       |> add("ReStruct.Lazy.List.drop", drop_lazy_list(size))
-      |> on(Start, default_announcer(~size, ~name="List.drop"))
-      |> on(Cycle, default_printer)
+      |> on(Start, Utils.default_announcer(~size, ~name="List.drop"))
+      |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
       |> run(run_opts(~async=false))
     );
@@ -226,8 +225,8 @@ module Reverse = {
       |> add("Belt.Array.reverse", reverse_array(size))
       |> add("Belt.List.reverse", reverse_strict_list(size))
       |> add("ReStruct.Lazy.List.reverse", reverse_lazy_list(size))
-      |> on(Start, default_announcer(~size, ~name="List.reverse"))
-      |> on(Cycle, default_printer)
+      |> on(Start, Utils.default_announcer(~size, ~name="List.reverse"))
+      |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
       |> run(run_opts(~async=false))
     );

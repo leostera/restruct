@@ -16,7 +16,9 @@
     "in-source": false
   },
   "suffix": ".bs.js",
-  "bs-dependencies": [],
+  "bs-dependencies": [
+    "@ostera/rebench",
+  ],
   "warnings": {
     "error" : "+101"
   },

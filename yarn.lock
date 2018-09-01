@@ -2,6 +2,12 @@
 # yarn lockfile v1
 
 
+"@ostera/rebench@^0.0.1-alpha":
+  version "0.0.1-alpha"
+  resolved "https://registry.yarnpkg.com/@ostera/rebench/-/rebench-0.0.1-alpha.tgz#67871d1bf84a20972d05b64c04496fb3613c3d2f"
+  dependencies:
+    benchmark "^2.1.4"
+
 benchmark@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/benchmark/-/benchmark-2.1.4.tgz#09f3de31c916425d498cc2ee565a0ebf3c2a5629"

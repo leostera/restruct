@@ -1,4 +1,3 @@
-open Bench_Utils;
 open ReStruct;
 
 module Helpers = {
@@ -70,8 +69,8 @@ module Push = {
       |> add("ReStruct.BatchedQueue.push", push_batched_queue(size))
       |> add("ReStruct.BankersQueue.push", push_bankers_queue(size))
       |> add("ReStruct.Lazy.RealTimeQueue.push", push_realtime_queue(size))
-      |> on(Start, default_announcer(~size, ~name="Queue.Push"))
-      |> on(Cycle, default_printer)
+      |> on(Start, Utils.default_announcer(~size, ~name="Queue.Push"))
+      |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
       |> run(run_opts(~async=false))
     );
@@ -108,8 +107,8 @@ module Tail = {
       |> add("ReStruct.BatchedQueue.tail", tail_batched_queue(size))
       |> add("ReStruct.BankersQueue.tail", tail_bankers_queue(size))
       |> add("ReStruct.Lazy.RealTimeQueue.tail", tail_realtime_queue(size))
-      |> on(Start, default_announcer(~size, ~name="Queue.Tail"))
-      |> on(Cycle, default_printer)
+      |> on(Start, Utils.default_announcer(~size, ~name="Queue.Tail"))
+      |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
       |> run(run_opts(~async=false))
     );
