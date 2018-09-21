@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly PKG=ReActor
+readonly PKG=ReStruct
 
 readonly DOCS=docs
 readonly ODOC=$(which odoc)
