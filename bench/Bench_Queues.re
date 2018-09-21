@@ -66,13 +66,22 @@ module Push = {
   let run = size =>
     ReBench.(
       make()
-      |> add("ReStruct.BatchedQueue.push", push_batched_queue(size))
-      |> add("ReStruct.BankersQueue.push", push_bankers_queue(size))
-      |> add("ReStruct.Lazy.RealTimeQueue.push", push_realtime_queue(size))
+      |> add({
+           desc: "ReStruct.BatchedQueue.push",
+           bench: push_batched_queue(size),
+         })
+      |> add({
+           desc: "ReStruct.BankersQueue.push",
+           bench: push_bankers_queue(size),
+         })
+      |> add({
+           desc: "ReStruct.Lazy.RealTimeQueue.push",
+           bench: push_realtime_queue(size),
+         })
       |> on(Start, Utils.default_announcer(~size, ~name="Queue.Push"))
       |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
-      |> run(run_opts(~async=false))
+      |> run({async: false})
     );
 };
 
@@ -104,12 +113,21 @@ module Tail = {
   let run = size =>
     ReBench.(
       make()
-      |> add("ReStruct.BatchedQueue.tail", tail_batched_queue(size))
-      |> add("ReStruct.BankersQueue.tail", tail_bankers_queue(size))
-      |> add("ReStruct.Lazy.RealTimeQueue.tail", tail_realtime_queue(size))
+      |> add({
+           desc: "ReStruct.BatchedQueue.tail",
+           bench: tail_batched_queue(size),
+         })
+      |> add({
+           desc: "ReStruct.BankersQueue.tail",
+           bench: tail_bankers_queue(size),
+         })
+      |> add({
+           desc: "ReStruct.Lazy.RealTimeQueue.tail",
+           bench: tail_realtime_queue(size),
+         })
       |> on(Start, Utils.default_announcer(~size, ~name="Queue.Tail"))
       |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
-      |> run(run_opts(~async=false))
+      |> run({async: false})
     );
 };

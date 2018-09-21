@@ -1,10 +1,12 @@
 {
   "name": "@ostera/restruct",
-  "version": "0.0.1-alpha",
+  "version": "0.0.2-alpha",
   "author": "Leandro Ostera <leandro@ostera.io>",
   "license": "MIT",
   "devDependencies": {
-    "@ostera/rebench": "^0.0.1-alpha",
+    "rebench": "^0.0.2-alpha",
     "bs-platform": "^4.0.5"
+  },
+  "dependencies": {
   }
 }

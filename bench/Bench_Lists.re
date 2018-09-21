@@ -45,15 +45,15 @@ module Make = {
   let run = size =>
     ReBench.(
       make()
-      |> add("Array.make", make_array(size))
-      |> add("Belt.Array.make", make_belt_array(size))
-      |> add("Belt.List.make", make_strict_belt_list(size))
-      |> add("ReStruct.Lazy.List.make", make_lazy_list(size))
-      |> add("List (inductive)", make_strict_list(size))
+      |> add({desc: "Array.make", bench: make_array(size)})
+      |> add({desc: "Belt.Array.make", bench: make_belt_array(size)})
+      |> add({desc: "Belt.List.make", bench: make_strict_belt_list(size)})
+      |> add({desc: "ReStruct.Lazy.List.make", bench: make_lazy_list(size)})
+      |> add({desc: "List (inductive)", bench: make_strict_list(size)})
       |> on(Start, Utils.default_announcer(~size, ~name="List.Make"))
       |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
-      |> run(run_opts(~async=false))
+      |> run({async: false})
     );
 };
 
@@ -106,15 +106,21 @@ module Append = {
   let run = size =>
     ReBench.(
       make()
-      |> add("Array.append", append_array(size))
-      |> add("Belt.Array.concat", append_belt_array(size))
-      |> add("Belt.List.concat", append_strict_belt_list(size))
-      |> add("ReStruct.Lazy.List.append", append_lazy_list(size))
-      |> add("List.append", append_strict_list(size))
+      |> add({desc: "Array.append", bench: append_array(size)})
+      |> add({desc: "Belt.Array.concat", bench: append_belt_array(size)})
+      |> add({
+           desc: "Belt.List.concat",
+           bench: append_strict_belt_list(size),
+         })
+      |> add({
+           desc: "ReStruct.Lazy.List.append",
+           bench: append_lazy_list(size),
+         })
+      |> add({desc: "List.append", bench: append_strict_list(size)})
       |> on(Start, Utils.default_announcer(~size, ~name="List.Append"))
       |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
-      |> run(run_opts(~async=false))
+      |> run({async: false})
     );
 };
 
@@ -146,13 +152,13 @@ module Take = {
   let run = size =>
     ReBench.(
       make()
-      |> add("Belt.Array.slice", take_array(size))
-      |> add("Belt.List.take", take_strict_list(size))
-      |> add("ReStruct.Lazy.List.take", take_lazy_list(size))
+      |> add({desc: "Belt.Array.slice", bench: take_array(size)})
+      |> add({desc: "Belt.List.take", bench: take_strict_list(size)})
+      |> add({desc: "ReStruct.Lazy.List.take", bench: take_lazy_list(size)})
       |> on(Start, Utils.default_announcer(~size, ~name="List.take"))
       |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
-      |> run(run_opts(~async=false))
+      |> run({async: false})
     );
 };
 
@@ -184,13 +190,13 @@ module Drop = {
   let run = size =>
     ReBench.(
       make()
-      |> add("Belt.Array.sliceToEnd", drop_array(size))
-      |> add("Belt.List.drop", drop_strict_list(size))
-      |> add("ReStruct.Lazy.List.drop", drop_lazy_list(size))
+      |> add({desc: "Belt.Array.sliceToEnd", bench: drop_array(size)})
+      |> add({desc: "Belt.List.drop", bench: drop_strict_list(size)})
+      |> add({desc: "ReStruct.Lazy.List.drop", bench: drop_lazy_list(size)})
       |> on(Start, Utils.default_announcer(~size, ~name="List.drop"))
       |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
-      |> run(run_opts(~async=false))
+      |> run({async: false})
     );
 };
 
@@ -222,12 +228,15 @@ module Reverse = {
   let run = size =>
     ReBench.(
       make()
-      |> add("Belt.Array.reverse", reverse_array(size))
-      |> add("Belt.List.reverse", reverse_strict_list(size))
-      |> add("ReStruct.Lazy.List.reverse", reverse_lazy_list(size))
+      |> add({desc: "Belt.Array.reverse", bench: reverse_array(size)})
+      |> add({desc: "Belt.List.reverse", bench: reverse_strict_list(size)})
+      |> add({
+           desc: "ReStruct.Lazy.List.reverse",
+           bench: reverse_lazy_list(size),
+         })
       |> on(Start, Utils.default_announcer(~size, ~name="List.reverse"))
       |> on(Cycle, Utils.default_printer)
       |> on(Complete, _e => Js.log(""))
-      |> run(run_opts(~async=false))
+      |> run({async: false})
     );
 };

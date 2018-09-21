@@ -17,7 +17,7 @@
   },
   "suffix": ".bs.js",
   "bs-dependencies": [
-    "@ostera/rebench",
+    "rebench",
   ],
   "warnings": {
     "error" : "+101"
