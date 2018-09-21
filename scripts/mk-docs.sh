@@ -1,11 +1,14 @@
 #!/bin/bash
 
-readonly PKG=ReStruct
+readonly PKG=ReActor
 
 readonly DOCS=docs
 readonly ODOC=$(which odoc)
 readonly LIB=./lib/bs/src
 readonly SRC=./src
+
+# Ensure docs folder exists
+mkdir -p ${DOCS}
 
 # Gather the sources to compile .odoc files
 readonly CMT_FILES=$(find ${LIB} -name "*.cmti")
